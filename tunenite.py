@@ -153,7 +153,7 @@ def authorized():
             session['oauth_verifier'],
             session['request_token'])
 
-    return redirect(url_for('/'))
+    return redirect(url_for('main'))
 
 @app.route('/login')
 def login():
@@ -173,13 +173,17 @@ def login():
             'oauth_token': token_dict['oauth_token'],
             'oauth_callback': url_for('authorized', _external=True)}))
 
-@app.route('/')
-def index():
+@app.route('/main')
+def main():
     if 'auth_token' not in session:
         return redirect(url_for('login'))
     else:
         return render_template('tunenite.html')
 
+@app.route('/')
+def index():
+    return redirect(url_for('main'))
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=os.environ['PORT'])
 
