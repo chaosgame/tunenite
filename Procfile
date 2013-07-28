@@ -1,1 +1,1 @@
-web: python tunenite.py
+web: gunicorn tunenite:app
