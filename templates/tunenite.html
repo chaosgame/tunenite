@@ -11,13 +11,24 @@
     <script src="/static/tunenite.js"></script>
   </head>
   <body>
-    <div id="query_view" class="view">
-      <input id="search" type="text">
-      <ul id="results">
-      </ul>
-    </div>
 
-    <div id="playlist_view" class="view">
+    <a id="github" href="http://github.com/chaosgame/tunenite">
+      <img src="http://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub">
+    </a>
+
+    <div id="page">
+      <input id="search_query" type="text" autofocus="true" class="default_text" value="Enter Concert Venue">
+
+      <div id="search_view" class="view">
+        <ul id="search_results">
+        </ul>
+      </div>
+
+      <div id="playlist_view" class="view">
+      </div>
+
+      <div id="loading_view" class="view">
+      </div>
     </div>
   </body>
 </html>
