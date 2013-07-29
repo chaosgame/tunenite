@@ -3,21 +3,20 @@ $(document).ready(function(){
     $playlist_view = $('#playlist_view');
     $playlist_view.empty();
 
-    $('<img src=\'' + result.icon + '\'>')
-      .appendTo($playlist_view);
-    $('<br/>')
-      .appendTo($playlist_view);
+    $('body').css('background', 'url(' + result.icon + ') repeat');
     $('<a href=\'' + result.url + '\'>' + result.url + '</a>')
       .appendTo($playlist_view);
     $("#loading_view").hide();
-    $playlist_view.show('blind');
+
+    // TODO(nathan) display a back to results
+
+    $playlist_view.fadeIn();
   }
 
   function queryVenuePlaylist(e) {
     $result = $(e.target).parent('#search_results > .result');
 
-    $result.effect('highlight');
-    $('#search_view').hide('blind');
+    $('#search_view').slideUp();
     $("#loading_view").show();
 
     // TODO(nathan) error handling
@@ -80,8 +79,8 @@ $(document).ready(function(){
     e.preventDefault();
     var url = '/venue_search/' + encodeURIComponent($target.val());
 
-    $('#search_view').hide('blind');
-    $('#playlist_view').hide('blind');
+    $('#search_view').slideUp();
+    $('#playlist_view').fadeOut();
     $("#loading_view").show();
 
     $.ajax({
@@ -90,7 +89,7 @@ $(document).ready(function(){
     }).done(function(results) {
       $("#loading_view").hide();
       _.each(results, renderResult);
-      $('#search_view').show('blind');
+      $('#search_view').slideDown();
     });
   }
 
