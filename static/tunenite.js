@@ -3,18 +3,26 @@ $(document).ready(function(){
     $playlist_view = $('#playlist_view');
     $playlist_view.empty();
 
-    $('body').css('background', 'url(' + result.icon + ') repeat');
+    // Create an image element, set its onload, and download
+    // the playlist image from rdio.
+    var background = new Image();
+    background.onload = function () {
+      $('body').css('background', 'url(' + result.icon + ') repeat');
+    };
+    background.src = result.icon;
+
+    // Fill the rdio playlist in the view panel.
     $('<a href=\'' + result.url + '\'>' + result.url + '</a>')
       .appendTo($playlist_view);
     $("#loading_view").hide();
 
-    // TODO(nathan) display a back to results
 
+    // TODO(nathan) display a back to results
     $playlist_view.fadeIn();
   }
 
-  function queryVenuePlaylist(e) {
-    $result = $(e.target).parent('#search_results > .result');
+  function queryVenuePlaylist(event) {
+    $result = $(event.currentTarget);
 
     $('#search_view').slideUp();
     $("#loading_view").show();
